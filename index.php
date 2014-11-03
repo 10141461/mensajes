@@ -33,7 +33,8 @@
   <hr />
   <div class="smallWrap first">
    <h2>Mensajes Recientes</h2>
-   <p><img src="images/blankPic.png" alt="" /><?php mostrar_mensajes_inicio($con);
+   <p><img src="images/blankPic.png" alt="" /><?php 
+	mostrar_mensajes_inicio($con);
    ?>
    <a href="php/vermensajes.php" class="view">Ver más</a>
   </div>

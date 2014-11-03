@@ -32,10 +32,10 @@
   <a href="#" class="dl"></a>
   <hr />
   <div class="smallWrap first">
-   <h2>Mensajes Recientes</h2>
+   <h2>Sesión</h2>
    <p><img src="images/blankPic.png" alt="" /><?php 
-   echo $query="select * from usuarios where nombre_corto='".$_POST['name'].
-   "' and contrasena='".md5($_POST['contra'])."'";
+   $query="select * from usuarios where nombre_corto='".$_POST['name'].
+   "' and contrasena='".md5($_POST['id'])."'";
    if (!$resultado=mysqli_query($con,$query)) {
    echo "error".mysqli_error($con);
    }else{
@@ -45,23 +45,13 @@
     $_SESSION['nombre_corto']=$muestra['nombre_corto'];
     $_SESSION['tipo_usuario']=$muestra['id_tipo_usuario'];
     $_SESSION['id_usuario']=$muestra['id_usuario'];
-    print_r($_SESSION);
+    //print_r($_SESSION);
     echo "bienvenido ".$_SESSION['nombre_largo'];
-
-
-
-
-
-
-
-
-
-
 
    }
 
    ?>
-   <a href="php/vermensajes.php" class="view">Ver más</a>
+   <a href="vermensajes.php" class="view">Ver mensajes</a>
   </div>
   <div class="smallWrap">
    <h2>Notas externas</h2>

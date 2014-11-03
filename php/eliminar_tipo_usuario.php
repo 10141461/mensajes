@@ -37,7 +37,9 @@
    if (validar()){
      
    $query="delete from tipo_usuario where id_tipo_usuario=".$_GET['id_eliminar'];
-   if (!$resultado=mysqli_query($con,$query)) {echo "Error". mysqli_error($con);}
+	if (!$resultado=mysqli_query($con,$query)) {
+		echo "Error". mysqli_error($con);
+	}
    else{
     header("location: ver_tipo_usuario.php");
 

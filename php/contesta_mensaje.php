@@ -49,7 +49,7 @@
 		
 		$query="INSERT INTO mensajes (id_mensaje, id_padre,asunto,id_usuario,descripcion,
       id_categoria,fecha_publicacion) 
-		VALUES (NULL, '".$id."', 'REspuesta', '".$_SESSION['id_usuario']."', '".$_POST['form_mensaje_respuesta']."',
+		VALUES (NULL, '".$id."', 'Respuesta', '".$_SESSION['id_usuario']."', '".$_POST['form_mensaje_respuesta']."',
      '2', '2014-10-22');";
 		if(!$resultado=mysqli_query($con, $query)) {echo "Error".mysqli_error($con);} else{
 				

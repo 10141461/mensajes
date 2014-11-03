@@ -33,10 +33,32 @@
   <hr />
   <div class="smallWrap first">
    <h2>Mensajes Recientes</h2>
-   <p><img src="images/blankPic.png" alt="" /><?php 
-   validar();
-   echo "Bienvenido".$_SESSION['nombre_largo'];
-   ver_tipo_usuarios($con);
+   <p><img src="images/blankPic.png" alt="" />
+   <?php 
+   
+	if(!isset($_POST['btn_editar'])) {
+		$id=$_GET['id_editar'];
+		echo "<form name='contesta_mensaje' action='editar_mensaje.php' method='post'>
+		<input type='hidden' name='id_padre' value='".$id."'>
+		<textarea name='form_mensaje_respuesta' col='50' rows='5'>Mensaje
+		</textarea>
+		<input type='submit' name='btn_editar' value='Editar'>
+		</form>"; ;
+	}
+	else {
+		$id=$_POST['id_padre'];
+		
+		//UPDATE tipo_usuarios set descripcion = ('".$_POST['usuariomodificado']."') where id_tipo_usuario=('".$_POST['x']."')";
+		 echo $query="update mensajes set descripcion = ( '".$_POST['form_mensaje_respuesta']."') where id_mensaje=".$_POST['id_padre'];
+		if(!$resultado=mysqli_query($con, $query)) 
+			{echo "Error".mysqli_error($con);} 
+			
+		else{
+				
+			header('Location: /mensajes/php/vermensajes.php');
+				
+		echo "<a href='vermensajes.php'>Regresar</a>";}	
+	}
    ?>
    <a href="php/vermensajes.php" class="view">Ver más</a>
   </div>

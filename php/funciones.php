@@ -31,7 +31,14 @@ function mostrar_mensajes($con){
 	
 	while($muestra=mysqli_fetch_array($resultado)){
 		echo "<span class='marker'>Tema:".$muestra['asunto']."<br/></span>";
-		echo "".utf8_encode($muestra['descripcion'])."<a href='contesta_mensaje.php?id_padre=".$muestra['id_mensaje']."'> Contestar</a><br><a href='ver_respuesta_mensaje.php?id=".$muestra['id_mensaje']."'> Ver respuestas</a><br>";
+		echo "".utf8_encode($muestra['descripcion'])."<a href='contesta_mensaje.php?id_padre=".$muestra['id_mensaje']."'> 
+		Contestar</a><br><a href='ver_respuesta_mensaje.php?id=".$muestra['id_mensaje']."'> Ver respuestas</a><br>";
+		if($_SESSION['tipo_usuario']=='1'|| $_SESSION['id_usuario']==$muestra['id_usuario'] ){
+		
+			echo "<a href='eliminar_mensaje.php?id_eliminar=".$muestra['id_usuario']."'> Eliminar </a>"." </br> </span>"; 
+			echo "<a href='editar_mensaje.php?id_editar=".$muestra['id_mensaje']."'> Editar </a>"." </br> </span>"; 
+		}
+		
 		//mensajes_respuesta($muestra['id_mensaje'],$con);
 	}
 

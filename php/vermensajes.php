@@ -1,7 +1,7 @@
 <?php
     require "funciones.php";
 	$con=conectar();
-	
+	session_start();
 	
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -30,7 +30,11 @@
   
   <div class="smallWrap first">
    <h2>Mensajes Recientes</h2>
-   <p><img src="images/blankPic.png" alt="" /><?php mostrar_mensajes($con);
+   <p><img src="images/blankPic.png" alt="" />
+   <?php 
+   
+		validar();
+		mostrar_mensajes($con);
    ?>
    
   </div>

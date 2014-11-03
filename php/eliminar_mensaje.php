@@ -9,7 +9,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>ITQ Comunica</title>
-<link href="../estilos/otro.css" rel="stylesheet" type="text/css" />
+<link href="estilos/otro.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
@@ -34,9 +34,17 @@
   <div class="smallWrap first">
    <h2>Mensajes Recientes</h2>
    <p><img src="images/blankPic.png" alt="" /><?php 
-   validar();
-   echo "Bienvenido".$_SESSION['nombre_largo'];
-   ver_tipo_usuarios($con);
+	if(validar()){
+	$query="delete from mensajes where id_usuario=".$_GET['id_eliminar'];
+	if (!$resultado=mysqli_query($con,$query)) {
+		echo "Error". mysqli_error($con);
+	}
+   else{
+    header("location: vermensajes.php");
+
+   }
+ }
+	
    ?>
    <a href="php/vermensajes.php" class="view">Ver más</a>
   </div>
