@@ -11,13 +11,12 @@
 <title>ITQ Comunica</title>
 <link href="../estilos/otro.css" rel="stylesheet" type="text/css" />
 </head>
-
 <body>
  <div class="centerAlign">
  <a href="#" class="logo"></a>
   <p class="call">442-2274400<br /><span>ejemplo@comunicateITQ.com</span></p>
   <ul id="menu">
-   <li><a href="../index.php">Inicio</a></li>
+  <li><a href="../index.php">Inicio</a></li>
    <li><a href="vermensajes.php">Mensajes</a></li>
    <li><a href="catalogos.php">Administracion</a></li>
    
@@ -32,58 +31,28 @@
   <a href="#" class="dl"></a>
   <hr />
   <div class="smallWrap first">
-   <h2>Sesión</h2>
+   <h2>Modificar Categoria</h2>
    <p><img src="../images/blankPic.png" alt="" /><?php 
-
-   $query="select * from usuarios where nombre_corto='".$_POST['name'].
-   "' and contrasena='".md5($_POST['id'])."'";
-   $numero=mysqli_num_rows($resultado=mysqli_query($con,$query));
-   if($numero!=0){
-   if (!$resultado=mysqli_query($con,$query)) {
-   echo "error".mysqli_error($con);
-   }else{
-    $muestra=mysqli_fetch_array($resultado);
-	$numero=mysqli_num_rows($resultado);
-    $_SESSION['login']=true;
-    $_SESSION['nombre_largo']=$muestra['nombre_largo'];
-    $_SESSION['nombre_corto']=$muestra['nombre_corto'];
-    $_SESSION['tipo_usuario']=$muestra['id_tipo_usuario'];
-    $_SESSION['id_usuario']=$muestra['id_usuario'];
-    //print_r($_SESSION);
-	//print_r($numero);
-		echo "bienvenido ".$_SESSION['nombre_largo'];
-	}
-   }
-   else{
-		echo header('location: sinacceso.php');
-		}
-   
+		validar();
+		$tabla='status';
+		modificar_catalogo($con, $tabla, 'modificar_categoria.php');
    ?>
-   <a href="vermensajes.php" class="view"> Ver mensajes </a>
+   <!--<a href="php/vermensajes.php" class="view">Ver más</a> -->
   </div>
+   <div class="smallWrap first">
+  <h2>cerrar sesión</h2>
+		<p><img src='images/blankPic.png' alt='' />
+		<form class='form1' method='post' action='php/salir.php'>
+		<input name='invitado' type='submit' value='Salir' />
+		</form>
+	</div>
   <div class="smallWrap">
    <h2>Notas externas</h2>
    <p><img src="../images/blankPic.png" alt="" />Pellentesque nibh tortor, tempor ut congue at, sodales eu nibh. Mauris consectetur luctus ligula, in molestie felis feugiat id. Phasellus iaculis....</p>
    <p>Pellentesque nibh tortor, tempor ut congue at, sodales eu nibh. Mauris consectetur luctus ligula, in molestie felis feugiat id. Phasellus iaculis....</p>
    <a href="#" class="view">Más</a>
   </div>
-  <?php
-	if(!isset($_SESSION['login'])){
-	echo"<div class='smallWrap'>
-   <h2>Entrar</h2>
-   <p><img src='../images/blankPic.png' alt='' />
-   <form class='form1' method='post' action='php/entrar.php'>
-   <p><i>Los Campos son obligados</i></p>
-   Usuario<input name='name' type='text' /><br>
-   Contraseña<input name='id' type='text' />
-   <input name='' type='submit' value='Entrar' />
-  </form>
-   <form class='form1' method='post' action='php/entrar_invitado.php'>
-  <input name='invitado' type='submit' value='Invitado' />
-  </div>";
-  }
-	
-  ?>
+  
   <hr />
   <h3 class="mt">Maecenas dignissim</h3>
   <p>Suspendisse sollicitudin vestibulum luctus. Nulla dolor nunc, vestibulum a consequat at, vulputate ut magna. Aenean convallis odio odio. Phasellus feugiat eros id massa congue quis congue libero fermentum. In tellus lorem, varius nec vehicula a, pharetra in eros. Ut in nibh et risus lobortis tempor ut nec est. Phasellus ut interdum nisi. </p>

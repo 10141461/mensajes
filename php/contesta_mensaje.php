@@ -17,10 +17,10 @@
  <a href="#" class="logo"></a>
   <p class="call">442-2274400<br /><span>ejemplo@comunicateITQ.com</span></p>
   <ul id="menu">
-   <li><a href="index.html">Inicio</a></li>
-   <li><a href="vermensjes.php">Mensajes</a></li>
-   <li><a href="eventos.html">Eventos</a></li>
-   <li><a href="ligas.html">Ligas</a></li>
+   <li><a href="../index.php">Inicio</a></li>
+   <li><a href="vermensajes.php">Mensajes</a></li>
+   <li><a href="catalogos.php">Administracion</a></li>
+   
    <li class="ml"><a href="http://www.Sisteqmas.html">Sistqmas</a></li>
    <li><a href="http://www.itq.edu.mx">ITQ</a></li>
    <li><a href="http://www.facebook.com/mensajes.itq">Facebook</a></li>
@@ -34,6 +34,7 @@
   <div class="smallWrap first">
    <h2>Contesta Mensaje</h2>
    <?php
+   validar();
    if(!isset($_POST['btn_contesta'])) {
 		$id=$_GET['id_padre'];
 		echo "<form name='contesta_mensaje' action='contesta_mensaje.php' method='post'>
@@ -41,23 +42,36 @@
 		<textarea name='form_mensaje_respuesta' col='50' rows='5'>Mensaje
 		</textarea>
 		<input type='submit' name='btn_contesta' value='Contestar'>
-</form>"; ;
+		|</form>"; ;
 	}else {
 		$id=$_POST['id_padre'];
-		
-		
-		
-		$query="INSERT INTO mensajes (id_mensaje, id_padre,asunto,id_usuario,descripcion,
-      id_categoria,fecha_publicacion) 
-		VALUES (NULL, '".$id."', 'Respuesta', '".$_SESSION['id_usuario']."', '".$_POST['form_mensaje_respuesta']."',
-     '2', '2014-10-22');";
+		$query2="select * from mensajes where id_mensaje=".$id;
+		$resultado=mysqli_query($con,$query2);
+		while($muestra=mysqli_fetch_array($resultado)){
+			$id_m=$muestra['id_categoria'];
+			//echo $query="update mensajes set id_categoria=".$muestra['id_categoria']." where ";
+		//ECHO $muestra['descripcion'];
+		}
+		$query="INSERT INTO mensajes (id_mensaje, id_padre,asunto,id_usuario,descripcion,id_categoria,fecha_publicacion) 
+		VALUES (NULL, '".$id."', 'Respuesta', '".$_SESSION['id_usuario']."', '".$_POST['form_mensaje_respuesta']."','".$id_m."', 'SYSDATE');";
 		if(!$resultado=mysqli_query($con, $query)) {echo "Error".mysqli_error($con);} else{
 				
 				header('Location: /mensajes/php/vermensajes.php');
 				
-			echo "<a href='vermensajes.php'>Regresar</a>";}	}?>
+			echo "<a href='vermensajes.php'>Regresar</a>";}	
+			
+		
+		
+	}
+	?>
   </div>
-  
+   <div class="smallWrap first">
+  <h2>cerrar sesión</h2>
+		<p><img src='images/blankPic.png' alt='' />
+		<form class='form1' method='post' action='php/salir.php'>
+		<input name='invitado' type='submit' value='Salir' />
+		</form>
+	</div>
   <hr />
   <h3 class="mt">Maecenas dignissim</h3>
   <p>Suspendisse sollicitudin vestibulum luctus. Nulla dolor nunc, vestibulum a consequat at, vulputate ut magna. Aenean convallis odio odio. Phasellus feugiat eros id massa congue quis congue libero fermentum. In tellus lorem, varius nec vehicula a, pharetra in eros. Ut in nibh et risus lobortis tempor ut nec est. Phasellus ut interdum nisi. </p>

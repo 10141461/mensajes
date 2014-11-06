@@ -17,10 +17,10 @@
  <a href="#" class="logo"></a>
   <p class="call">442-2274400<br /><span>ejemplo@comunicateITQ.com</span></p>
   <ul id="menu">
-   <li><a href="index.html">Inicio</a></li>
-   <li><a href="vermensjes.php">Mensajes</a></li>
-   <li><a href="eventos.html">Eventos</a></li>
-   <li><a href="ligas.html">Ligas</a></li>
+   <li><a href="../index.php">Inicio</a></li>
+   <li><a href="vermensajes.php">Mensajes</a></li>
+   <li><a href="catalogos.php">Administracion</a></li>
+   <li><a href="entrar.php">Salir</a></li>
    <li class="ml"><a href="http://www.Sisteqmas.html">Sistqmas</a></li>
    <li><a href="http://www.itq.edu.mx">ITQ</a></li>
    <li><a href="http://www.facebook.com/mensajes.itq">Facebook</a></li>
@@ -30,7 +30,7 @@
   
   <div class="smallWrap first">
    <h2>Mensajes Recientes</h2>
-   <p><img src="images/blankPic.png" alt="" />
+   <p><img src="../images/blankPic.png" alt="" />
    <?php 
    
 		validar();
@@ -39,15 +39,23 @@
    
   </div>
   
-  <div class="smallWrap2">
+  <?php
+	if(!isset($_SESSION['login'])){
+	echo"<div class='smallWrap'>
    <h2>Entrar</h2>
-   <p><img src="images/blankPic.png" alt="" /><form class="form1" method="post" action="entrar.php">
+   <p><img src='../images/blankPic.png' alt='' />
+   <form class='form1' method='post' action='entrar.php'>
    <p><i>Los Campos son obligados</i></p>
-   Usuario<input name="name" type="text" /><br>
-   Contraseña<input name="id" type="text" />
-   <input name="" type="submit" value="Entrar" />
+   Usuario<input name='name' type='text' /><br>
+   Contraseña<input name='id' type='text' />
+   <input name='' type='submit' value='Entrar' />
   </form>
-  </div>
+   <form class='form1' method='post' action='entrar_invitado.php'>
+  <input name='invitado' type='submit' value='Invitado' />
+  </div>";
+  }
+	
+  ?>
   <hr />
   <h3 class="mt">Maecenas dignissim</h3>
   <p>Suspendisse sollicitudin vestibulum luctus. Nulla dolor nunc, vestibulum a consequat at, vulputate ut magna. Aenean convallis odio odio. Phasellus feugiat eros id massa congue quis congue libero fermentum. In tellus lorem, varius nec vehicula a, pharetra in eros. Ut in nibh et risus lobortis tempor ut nec est. Phasellus ut interdum nisi. </p>

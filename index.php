@@ -1,6 +1,7 @@
 <?php
     require "/php/funciones.php";
 	$con=conectar();
+	session_start();
 	
 	
 ?>
@@ -18,9 +19,8 @@
   <p class="call">442-2274400<br /><span>ejemplo@comunicateITQ.com</span></p>
   <ul id="menu">
    <li><a href="index.html">Inicio</a></li>
-   <li><a href="vermensjes.php">Mensajes</a></li>
-   <li><a href="eventos.html">Eventos</a></li>
-   <li><a href="ligas.html">Ligas</a></li>
+   <li><a href="php/vermensajes.php">Mensajes</a></li>
+   <li><a href="php/catalogos.php">Administracion</a></li>
    <li class="ml"><a href="http://www.Sisteqmas.html">Sistqmas</a></li>
    <li><a href="http://www.itq.edu.mx">ITQ</a></li>
    <li><a href="http://www.facebook.com/mensajes.itq">Facebook</a></li>
@@ -34,6 +34,7 @@
   <div class="smallWrap first">
    <h2>Mensajes Recientes</h2>
    <p><img src="images/blankPic.png" alt="" /><?php 
+    validar_index();
 	mostrar_mensajes_inicio($con);
    ?>
    <a href="php/vermensajes.php" class="view">Ver más</a>
@@ -44,15 +45,32 @@
    <p>Pellentesque nibh tortor, tempor ut congue at, sodales eu nibh. Mauris consectetur luctus ligula, in molestie felis feugiat id. Phasellus iaculis....</p>
    <a href="#" class="view">Más</a>
   </div>
-  <div class="smallWrap">
+  <?php
+	if(!isset($_SESSION['login'])){
+	echo"<div class='smallWrap'>
    <h2>Entrar</h2>
-   <p><img src="images/blankPic.png" alt="" /><form class="form1" method="post" action="entrar.php">
+   <p><img src='images/blankPic.png' alt='' />
+   <form class='form1' method='post' action='php/entrar.php'>
    <p><i>Los Campos son obligados</i></p>
-   Usuario<input name="name" type="text" /><br>
-   Contraseña<input name="id" type="text" />
-   <input name="" type="submit" value="Entrar" />
+   Usuario<input name='name' type='text' /><br>
+   Contraseña<input name='id' type='text' />
+   <input name='' type='submit' value='Entrar' />
   </form>
-  </div>
+   <form class='form1' method='post' action='php/entrar_invitado.php'>
+  <input name='invitado' type='submit' value='Invitado' />
+  </div>";
+  }
+  else{
+		echo "<div class='smallWrap'>
+		 <h2>cerrar sesión</h2>
+		<p><img src='images/blankPic.png' alt='' />
+		<form class='form1' method='post' action='php/salir.php'>
+		<input name='invitado' type='submit' value='Salir' />
+		</form>
+		</div>";
+  }
+	
+  ?>
   <hr />
   <h3 class="mt">Maecenas dignissim</h3>
   <p>Suspendisse sollicitudin vestibulum luctus. Nulla dolor nunc, vestibulum a consequat at, vulputate ut magna. Aenean convallis odio odio. Phasellus feugiat eros id massa congue quis congue libero fermentum. In tellus lorem, varius nec vehicula a, pharetra in eros. Ut in nibh et risus lobortis tempor ut nec est. Phasellus ut interdum nisi. </p>

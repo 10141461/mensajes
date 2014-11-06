@@ -1,7 +1,7 @@
 <?php
     require "funciones.php";
 	$con=conectar();
-	
+	session_start();
 	
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -17,10 +17,10 @@
  <a href="#" class="logo"></a>
   <p class="call">442-2274400<br /><span>ejemplo@comunicateITQ.com</span></p>
   <ul id="menu">
-   <li><a href="index.html">Inicio</a></li>
-   <li><a href="vermensjes.php">Mensajes</a></li>
-   <li><a href="eventos.html">Eventos</a></li>
-   <li><a href="ligas.html">Ligas</a></li>
+   <li><a href="../index.php">Inicio</a></li>
+   <li><a href="vermensajes.php">Mensajes</a></li>
+   <li><a href="catalogos.php">Administracion</a></li>
+   
    <li class="ml"><a href="http://www.Sisteqmas.html">Sistqmas</a></li>
    <li><a href="http://www.itq.edu.mx">ITQ</a></li>
    <li><a href="http://www.facebook.com/mensajes.itq">Facebook</a></li>
@@ -30,7 +30,7 @@
   
   <div class="smallWrap first">
    <h2>Mensajes Recientes</h2>
-   <p><img src="images/blankPic.png" alt="" /><?php mensajes_respuesta($_GET['id'],$con);
+   <p><img src="../images/blankPic.png" alt="" /><?php mensajes_respuesta($_GET['id'],$con);
    ?>
    
   </div>

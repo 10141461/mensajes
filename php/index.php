@@ -3,6 +3,7 @@
 	$con=conectar();
 	session_start();
 	
+	
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -32,34 +33,9 @@
   <a href="#" class="dl"></a>
   <hr />
   <div class="smallWrap first">
-   <h2>Sesión</h2>
-   <p><img src="../images/blankPic.png" alt="" /><?php 
-
-   $query="select * from usuarios where nombre_corto='".$_POST['name'].
-   "' and contrasena='".md5($_POST['id'])."'";
-   $numero=mysqli_num_rows($resultado=mysqli_query($con,$query));
-   if($numero!=0){
-   if (!$resultado=mysqli_query($con,$query)) {
-   echo "error".mysqli_error($con);
-   }else{
-    $muestra=mysqli_fetch_array($resultado);
-	$numero=mysqli_num_rows($resultado);
-    $_SESSION['login']=true;
-    $_SESSION['nombre_largo']=$muestra['nombre_largo'];
-    $_SESSION['nombre_corto']=$muestra['nombre_corto'];
-    $_SESSION['tipo_usuario']=$muestra['id_tipo_usuario'];
-    $_SESSION['id_usuario']=$muestra['id_usuario'];
-    //print_r($_SESSION);
-	//print_r($numero);
-		echo "bienvenido ".$_SESSION['nombre_largo'];
-	}
-   }
-   else{
-		echo header('location: sinacceso.php');
-		}
-   
-   ?>
-   <a href="vermensajes.php" class="view"> Ver mensajes </a>
+   <h2>Mensajes Recientes</h2>
+   <p><img src="../images/blankPic.png" alt="" />
+    <h1>Acceso Denegado!</h1>
   </div>
   <div class="smallWrap">
    <h2>Notas externas</h2>
@@ -72,13 +48,13 @@
 	echo"<div class='smallWrap'>
    <h2>Entrar</h2>
    <p><img src='../images/blankPic.png' alt='' />
-   <form class='form1' method='post' action='php/entrar.php'>
+   <form class='form1' method='post' action='entrar.php'>
    <p><i>Los Campos son obligados</i></p>
    Usuario<input name='name' type='text' /><br>
    Contraseña<input name='id' type='text' />
    <input name='' type='submit' value='Entrar' />
   </form>
-   <form class='form1' method='post' action='php/entrar_invitado.php'>
+   <form class='form1' method='post' action='entrar_invitado.php'>
   <input name='invitado' type='submit' value='Invitado' />
   </div>";
   }

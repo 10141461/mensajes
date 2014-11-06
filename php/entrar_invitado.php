@@ -35,15 +35,12 @@
    <h2>Sesión</h2>
    <p><img src="../images/blankPic.png" alt="" /><?php 
 
-   $query="select * from usuarios where nombre_corto='".$_POST['name'].
-   "' and contrasena='".md5($_POST['id'])."'";
-   $numero=mysqli_num_rows($resultado=mysqli_query($con,$query));
-   if($numero!=0){
+   $query="select * from usuarios where nombre_corto='Invitado' and contrasena='".md5('sara')."'";
+   
    if (!$resultado=mysqli_query($con,$query)) {
    echo "error".mysqli_error($con);
    }else{
     $muestra=mysqli_fetch_array($resultado);
-	$numero=mysqli_num_rows($resultado);
     $_SESSION['login']=true;
     $_SESSION['nombre_largo']=$muestra['nombre_largo'];
     $_SESSION['nombre_corto']=$muestra['nombre_corto'];
@@ -51,12 +48,10 @@
     $_SESSION['id_usuario']=$muestra['id_usuario'];
     //print_r($_SESSION);
 	//print_r($numero);
-		echo "bienvenido ".$_SESSION['nombre_largo'];
+		echo "Bienvenido";
 	}
-   }
-   else{
-		echo header('location: sinacceso.php');
-		}
+
+   
    
    ?>
    <a href="vermensajes.php" class="view"> Ver mensajes </a>
@@ -67,23 +62,13 @@
    <p>Pellentesque nibh tortor, tempor ut congue at, sodales eu nibh. Mauris consectetur luctus ligula, in molestie felis feugiat id. Phasellus iaculis....</p>
    <a href="#" class="view">Más</a>
   </div>
-  <?php
-	if(!isset($_SESSION['login'])){
-	echo"<div class='smallWrap'>
-   <h2>Entrar</h2>
-   <p><img src='../images/blankPic.png' alt='' />
-   <form class='form1' method='post' action='php/entrar.php'>
-   <p><i>Los Campos son obligados</i></p>
-   Usuario<input name='name' type='text' /><br>
-   Contraseña<input name='id' type='text' />
-   <input name='' type='submit' value='Entrar' />
+  <div class="smallWrap">
+   <h2>Registrate</h2>
+   <p><img src="../images/blankPic.png" alt="" /><form class="form1" method="post" action="agregar_usuario.php">
+   
+   <input name="" type="submit" value="Regístrate" />
   </form>
-   <form class='form1' method='post' action='php/entrar_invitado.php'>
-  <input name='invitado' type='submit' value='Invitado' />
-  </div>";
-  }
-	
-  ?>
+  </div>
   <hr />
   <h3 class="mt">Maecenas dignissim</h3>
   <p>Suspendisse sollicitudin vestibulum luctus. Nulla dolor nunc, vestibulum a consequat at, vulputate ut magna. Aenean convallis odio odio. Phasellus feugiat eros id massa congue quis congue libero fermentum. In tellus lorem, varius nec vehicula a, pharetra in eros. Ut in nibh et risus lobortis tempor ut nec est. Phasellus ut interdum nisi. </p>
